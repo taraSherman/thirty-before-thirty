@@ -14,8 +14,8 @@ function App() {
             return(
               <Form>
                 <Field type='text' name='username' placeholder='Username'/>
-                <Field type='password' name='password' placeholder='Password'/>
-
+                <Field type='password' name='password' placeholder='Password'/> 
+                
                 <input type='submit' />
 
               </Form>
