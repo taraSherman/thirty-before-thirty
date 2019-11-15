@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+
 import { Formik, Form , Field } from 'formik';
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
 
     />
   )
+
+
+function App() {
+  return <div className="App">This is an app!</div>;
 }
 
 export default App;
