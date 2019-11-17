@@ -1,10 +1,15 @@
 import React from "react";
-import "./App.css";
-import Login from "Login";
+import Login from "./Component/Login";
+import styled from "styled-components";
+
+const wrapperDiv = styled.div`
+  font-family: sans-sarif;
+  text-align: center;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <div>
       This is an app!<Login></Login>
     </div>
   );
