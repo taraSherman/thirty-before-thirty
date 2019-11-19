@@ -8,8 +8,9 @@ function ItemForm(props) {
     {
       name: '',
       description: '',
-      deadline: '',
-      complete: false
+      deadline: null,
+      complete: false,
+      comments: []
     }
   )
 
@@ -25,9 +26,10 @@ function ItemForm(props) {
     props.addItem(itemObj);
     setItemObj({
       name: '',
-      description: '',
+      description: null,
       deadline: '',
-      completed: false
+      completed: false,
+      comments: []
     });
   };
 
