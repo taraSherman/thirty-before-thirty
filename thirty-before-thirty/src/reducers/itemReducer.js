@@ -1,8 +1,8 @@
 import {
   SET_LOADING,
-  FETCH_LISTS_START,
-  FETCH_LISTS_SUCCESS,
-  FETCH_LIST_START,
+  // FETCH_LISTS_START,
+  // FETCH_LISTS_SUCCESS,
+  // FETCH_LIST_START,
   FETCH_LIST_SUCCESS,
   ADD_LIST_SUCCESS,
   UPDATE_LIST_SUCCESS,
@@ -20,7 +20,7 @@ import {
 
 const initialState = {
   list: [],
-  lists: [],
+  // lists: [],
   items: [],
   comments: [],
   loading: false,
@@ -32,19 +32,19 @@ const initialState = {
 
 export const itemReducer = ( state = initialState, action) => {
   switch (action.type) {
-    case FETCH_LISTS_START:
-    return {
-      ...state,
-      fetchLists: true,
-      loading: true
-    };
-    case FETCH_LISTS_SUCCESS:
-      return {
-        ...state,
-        lists: action.payload,
-        fetchLists: false,
-        loading: false
-    };
+    // case FETCH_LISTS_START:
+    // return {
+    //   ...state,
+    //   fetchLists: true,
+    //   loading: true
+    // };
+    // case FETCH_LISTS_SUCCESS:
+    //   return {
+    //     ...state,
+    //     lists: action.payload,
+    //     fetchLists: false,
+    //     loading: false
+    // };
     case FETCH_LIST_START:
       return {
         ...state,

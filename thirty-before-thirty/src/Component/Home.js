@@ -11,7 +11,7 @@ import { ItemListView } from './views'
 function Home() {
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="Home">
         <ItemListView />
       </div>
     </Provider>

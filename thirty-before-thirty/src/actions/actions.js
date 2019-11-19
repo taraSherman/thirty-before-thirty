@@ -1,9 +1,9 @@
 import api from '../utils/api';
 
 export const SET_LOADING = 'SET_LOADING';
-export const FETCH_LISTS_START = 'FETCH_LISTS_START';
-export const FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS';
-export const FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL';
+// export const FETCH_LISTS_START = 'FETCH_LISTS_START';
+// export const FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS';
+// export const FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL';
 export const ADD_LIST_START = 'ADD_LIST_START';
 export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS';
 export const ADD_LIST_FAIL = 'ADD_LIST_FAIL';
@@ -39,46 +39,46 @@ export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
 export const CLEAR_CURRENT_ITEM = 'CLEAR_CURRENT_ITEM';
 
 //GET all lists
-export const fetchLists = () => dispatch => {
-  dispatch({ type: FETCH_LISTS_START })
-  api
-    .get('/lists')
-    .then(response => {
-      dispatch({
-        type: FETCH_LISTS_SUCCESS,
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error, 'actions/index.js, line 29, error fetching lists');
-      alert('There was an error retrieving your list. Please try again.');
-      dispatch({
-        type: FETCH_LISTS_FAIL,
-        payload: error.response
-      })
-    })
-};
+// export const fetchLists = () => dispatch => {
+//   dispatch({ type: FETCH_LISTS_START })
+//   api
+//     .get('/lists')
+//     .then(response => {
+//       dispatch({
+//         type: FETCH_LISTS_SUCCESS,
+//         payload: response.data
+//       })
+//     })
+//     .catch(error => {
+//       console.log(error, 'actions/index.js, line 29, error fetching lists');
+//       alert('There was an error retrieving your list. Please try again.');
+//       dispatch({
+//         type: FETCH_LISTS_FAIL,
+//         payload: error.response
+//       })
+//     })
+// };
 
 // GET list by id
-export const fetchList = selectedList => dispatch => {
-  dispatch({ type: FETCH_LIST_START })
-  api
-    .get(`/lists/${selectedList.id}`, selectedList)
-    .then(response => {
-      dispatch({
-        type: FETCH_LIST_SUCCESS,
-        payload: response.data
-      })
-    })
-    .catch(error => {
-      console.log(error, 'actions/index.js, line 29, error fetching lists');
-      alert('There was an error retrieving your list. Please try again.');
-      dispatch({
-        type: FETCH_LIST_FAIL,
-        payload: error.response
-      })
-    })
-};
+// export const fetchList = selectedList => dispatch => {
+//   dispatch({ type: FETCH_LIST_START })
+//   api
+//     .get(`/lists/${selectedList.id}`, selectedList)
+//     .then(response => {
+//       dispatch({
+//         type: FETCH_LIST_SUCCESS,
+//         payload: response.data
+//       })
+//     })
+//     .catch(error => {
+//       console.log(error, 'actions/index.js, line 29, error fetching lists');
+//       alert('There was an error retrieving your list. Please try again.');
+//       dispatch({
+//         type: FETCH_LIST_FAIL,
+//         payload: error.response
+//       })
+//     })
+// };
 
 // POST new list
 export const addList = newList => dispatch => {

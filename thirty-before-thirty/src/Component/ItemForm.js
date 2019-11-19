@@ -27,7 +27,7 @@ function ItemForm(props) {
       name: '',
       description: '',
       deadline: '',
-      completed: ''
+      completed: false
     });
   };
 
