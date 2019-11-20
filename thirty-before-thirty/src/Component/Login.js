@@ -16,8 +16,9 @@ const Buttons = styled.div`
   justify-content: space-evenly;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
 width: 75px;
+height: 25px;
 `;
 
 function Login() {
