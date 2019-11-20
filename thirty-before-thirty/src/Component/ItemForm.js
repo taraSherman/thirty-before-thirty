@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addItem } from '../actions/actions';
-// import ToggleComplete from '../components/toggleComplete';
+import { addItem } from '../actions/itemActions';
 
 function ItemForm(props) {
   const [itemObj, setItemObj] = useState(
@@ -9,7 +8,6 @@ function ItemForm(props) {
       name: '',
       description: '',
       deadline: null,
-      complete: false,
       comments: []
     }
   )
@@ -28,7 +26,6 @@ function ItemForm(props) {
       name: '',
       description: null,
       deadline: '',
-      completed: false,
       comments: []
     });
   };

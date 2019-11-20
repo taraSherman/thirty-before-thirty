@@ -1,17 +1,8 @@
-import { TOGGLE_COMPLETE } from '../actions/actions';
+import axios from 'axios';
 
-const initialState = {
-  complete: false
-};
+const api = axios.create({
+  baseURL: 'https://buildweek30before30.herokuapp.com/api',
+  withCredentials: true,
+});
 
-export function toggleReducer(state = initialState, action) {
-  switch (action.type) {
-    case TOGGLE_COMPLETE:
-      return {
-        ...state,
-        complete: !state.complete
-      };
-    default:
-      return state;
-  };
-};
+export default api;

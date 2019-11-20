@@ -1,9 +1,9 @@
 import api from '../utils/api';
 
 export const SET_LOADING = 'SET_LOADING';
-// export const FETCH_LISTS_START = 'FETCH_LISTS_START';
-// export const FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS';
-// export const FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL';
+export const FETCH_LISTS_START = 'FETCH_LISTS_START';
+export const FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS';
+export const FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL';
 export const ADD_LIST_START = 'ADD_LIST_START';
 export const ADD_LIST_SUCCESS = 'ADD_LIST_SUCCESS';
 export const ADD_LIST_FAIL = 'ADD_LIST_FAIL';
@@ -39,46 +39,46 @@ export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
 export const CLEAR_CURRENT_ITEM = 'CLEAR_CURRENT_ITEM';
 
 //GET all lists
-// export const fetchLists = () => dispatch => {
-//   dispatch({ type: FETCH_LISTS_START })
-//   api
-//     .get('/lists')
-//     .then(response => {
-//       dispatch({
-//         type: FETCH_LISTS_SUCCESS,
-//         payload: response.data
-//       })
-//     })
-//     .catch(error => {
-//       console.log(error, 'actions/index.js, line 29, error fetching lists');
-//       alert('There was an error retrieving your list. Please try again.');
-//       dispatch({
-//         type: FETCH_LISTS_FAIL,
-//         payload: error.response
-//       })
-//     })
-// };
+export const fetchLists = () => dispatch => {
+  dispatch({ type: FETCH_LISTS_START })
+  api
+    .get('/lists')
+    .then(response => {
+      dispatch({
+        type: FETCH_LISTS_SUCCESS,
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(error.response.error, 'actions/index.js, line 29, error fetching lists');
+      alert('There was an error retrieving your list. Please try again.');
+      dispatch({
+        type: FETCH_LISTS_FAIL,
+        payload: error.response.error
+      })
+    })
+};
 
 // GET list by id
-// export const fetchList = selectedList => dispatch => {
-//   dispatch({ type: FETCH_LIST_START })
-//   api
-//     .get(`/lists/${selectedList.id}`, selectedList)
-//     .then(response => {
-//       dispatch({
-//         type: FETCH_LIST_SUCCESS,
-//         payload: response.data
-//       })
-//     })
-//     .catch(error => {
-//       console.log(error, 'actions/index.js, line 29, error fetching lists');
-//       alert('There was an error retrieving your list. Please try again.');
-//       dispatch({
-//         type: FETCH_LIST_FAIL,
-//         payload: error.response
-//       })
-//     })
-// };
+export const fetchList = selectedList => dispatch => {
+  dispatch({ type: FETCH_LIST_START })
+  api
+    .get(`/lists/${selectedList.id}`, selectedList)
+    .then(response => {
+      dispatch({
+        type: FETCH_LIST_SUCCESS,
+        payload: response.data
+      })
+    })
+    .catch(error => {
+      console.log(error.response.error, 'actions/index.js, line 29, error fetching lists');
+      alert('There was an error retrieving your list. Please try again.');
+      dispatch({
+        type: FETCH_LIST_FAIL,
+        payload: error.response.error
+      })
+    })
+};
 
 // POST new list
 export const addList = newList => dispatch => {
@@ -92,11 +92,11 @@ export const addList = newList => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 67, error adding list');
+      console.log(error.response.error, 'actions/index.js, line 67, error adding list');
       alert('There was an error adding a new list. Please try again.');
       dispatch({
         type: ADD_LIST_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -113,11 +113,11 @@ export const updateList = updateList => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 56, error updating list');
+      console.log(error.response.error, 'actions/index.js, line 56, error updating list');
       alert('There was an error updating your list. Please try again.');
       dispatch({
         type: UPDATE_LIST_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -134,11 +134,11 @@ export const deleteList = deleteList => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 74, error deleting list');
+      console.log(error.response.error, 'actions/index.js, line 74, error deleting list');
       alert('There was an error deleting the selected list. Please try again.');
       dispatch({
         type: DELETE_LIST_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -155,11 +155,11 @@ export const addItem = newItem => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 41, error adding item');
+      console.log(error.response.error, 'actions/index.js, line 41, error adding item');
       alert('There was an arror adding your new item. Please try again.');
       dispatch({
         type: ADD_ITEM_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -176,11 +176,11 @@ export const updateItem = updateItem => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 56, error updating item');
+      console.log(error.response.error, 'actions/index.js, line 56, error updating item');
       alert('There was an error updating the selected item. Please try again.');
       dispatch({
         type: UPDATE_ITEM_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -197,11 +197,11 @@ export const deleteItem = deleteItem => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 74, error deleting item');
+      console.log(error.response.error, 'actions/index.js, line 74, error deleting item');
       alert('There was an error deleting the selected item. Please try again.');
       dispatch({
         type: DELETE_ITEM_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -218,11 +218,11 @@ export const addComment = newComment => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 41, error adding acomment');
+      console.log(error.response.error, 'actions/index.js, line 41, error adding acomment');
       alert('There was an arror adding your comment. Please try again.');
       dispatch({
         type: ADD_COMMENT_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -239,11 +239,11 @@ export const updateComment = updateComment => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 56, error editing comment');
+      console.log(error.response.error, 'actions/index.js, line 56, error editing comment');
       alert('There was an error editing the selected comment. Please try again.');
       dispatch({
         type: UPDATE_COMMENT_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
@@ -260,16 +260,16 @@ export const deleteComment = deleteComment => dispatch => {
       })
     })
     .catch(error => {
-      console.log(error, 'actions/index.js, line 74, error deleting comment');
+      console.log(error.response.error, 'actions/index.js, line 74, error deleting comment');
       alert('There was an error deleting the selected comment. Please try again.');
       dispatch({
         type: DELETE_COMMENT_FAIL,
-        payload: error.response
+        payload: error.response.error
       })
     })
 };
 
-// set loading to true
+// set isLoading to true
 export const setLoading = () => {
   return {
     type: SET_LOADING
@@ -287,14 +287,5 @@ export const setCurrentItem = item => {
 export const clearCurrentItem = item => {
   return {
     type: CLEAR_CURRENT_ITEM
-  };
-};
-
-// toggle complete
-export const TOGGLE_COMPLETE = "TOGGLE_COMPLETE";
-
-export function toggleComplete() {
-  return {
-    type: TOGGLE_COMPLETE
   };
 };

@@ -1,8 +1,11 @@
 import {
   SET_LOADING,
-  // FETCH_LISTS_START,
-  // FETCH_LISTS_SUCCESS,
-  // FETCH_LIST_START,
+  FETCH_LISTS_START,
+  FETCH_LISTS_SUCCESS,
+  FETCH_LISTS_FAIL,
+  FETCH_LIST_START,
+  FETCH_LIST_START,
+  FETCH_LIST_FAIL,
   FETCH_LIST_SUCCESS,
   ADD_LIST_SUCCESS,
   UPDATE_LIST_SUCCESS,
@@ -16,48 +19,53 @@ import {
   ERROR,
   SET_CURRENT_ITEM,
   CLEAR_CURRENT_ITEM
-} from '../actions/actions';
+} from '../actions/itemActions';
 
 const initialState = {
   list: [],
-  // lists: [],
+  lists: [],
   items: [],
+  item: [],
   comments: [],
-  loading: false,
+  isLoading: false,
   error: '',
   current: null
 };
 
-
-
 export const itemReducer = ( state = initialState, action) => {
   switch (action.type) {
-    // case FETCH_LISTS_START:
-    // return {
-    //   ...state,
-    //   fetchLists: true,
-    //   loading: true
-    // };
-    // case FETCH_LISTS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     lists: action.payload,
-    //     fetchLists: false,
-    //     loading: false
-    // };
+    case FETCH_LISTS_START:
+    return {
+      ...state,
+      isLoading: true
+    };
+    case FETCH_LISTS_SUCCESS:
+      return {
+        ...state,
+        lists: action.payload,
+        isLoading: false
+    };
+    case FETCH_LISTS_FAIL:
+      return {
+        ...state,
+        error: error.response.error
+    };
     case FETCH_LIST_START:
       return {
         ...state,
-        fetchList: true,
-        loading: true
+        isLoading: true
       };
     case FETCH_LIST_SUCCESS:
       return {
         ...state,
         list: action.payload,
-        fetchList: false,
-        loading: false
+        isLoading: false
       };
+    case FETCH_LIST_FAIL:
+      return {
+        ...state,
+        error: error.response.error
+    };
     case ADD_LIST_SUCCESS:
       return {
         ...state,
@@ -69,7 +77,7 @@ export const itemReducer = ( state = initialState, action) => {
     case UPDATE_LIST_SUCCESS:
       return {
         ...state,
-        lists: state.lists.map(list =>
+        list: state.list.map(list =>
           list.id === action.payload.id
           ? action.payload
           : list)
@@ -130,14 +138,12 @@ export const itemReducer = ( state = initialState, action) => {
       console.log(action.payload, 'reducers, line 123, error');
       return {
         ...state,
-        fetchLists: false,
-        fetchList: false,
-        error: action.payload
+        error: error.response.error
       };
     case SET_LOADING:
       return {
         ...state,
-        loading: true
+        isLoading: true
       };
     case SET_CURRENT_ITEM:
       return {
