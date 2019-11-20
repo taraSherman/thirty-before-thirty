@@ -1,7 +1,9 @@
 import React from "react";
 import Login from "./Component/Login";
-import Header from "./Component/Header"
+import Header from "./Component/Header";
+import RegisterationForm from './Component/RegisterationForm';
 import styled from "styled-components";
+
 
 const WrapperDiv = styled.div`
   font-family: sans-sarif;
@@ -23,6 +25,7 @@ function App() {
       <MainDiv>
         {/* Routes Here */}
         <Login></Login>
+        <RegisterationForm />
       </MainDiv>
     </WrapperDiv>
   );
