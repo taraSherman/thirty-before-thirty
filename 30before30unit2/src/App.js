@@ -6,7 +6,7 @@ import LoginForm from './components/loginForm';
 
 function App(props) {
   console.log('Application props', props)
- return ( 
+ return (
    <LoginForm />
  )
 }

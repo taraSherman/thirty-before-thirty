@@ -12,7 +12,7 @@ import styled from 'styled-components';
     
     
 
-  export default function LoginForm () {
+  function LoginForm () {
 
     return (
         
@@ -30,7 +30,7 @@ import styled from 'styled-components';
 
   }
 
-   withFormik({
+  export default  withFormik({
 
     mapPropsToValues: (currentValues) => {
 
