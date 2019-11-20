@@ -16,8 +16,11 @@ const MainDiv = styled.div`text-align: center;
   background-color: #F7F9FB;
 `;
 
+import Login from "./Components/Login";
+
 function App() {
   return (
+
     <WrapperDiv>
       <Header></Header>
       <MainDiv>
@@ -25,6 +28,7 @@ function App() {
         <Login></Login>
       </MainDiv>
     </WrapperDiv>
+
   );
 }
 
