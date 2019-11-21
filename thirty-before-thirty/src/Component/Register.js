@@ -13,11 +13,11 @@ function Register({ touched, errors, status }) {
   }, [status]);
   return (
     <div>
-      <form>
-        <input placeholder="email"></input>
-        <input placeholder="password"></input>
+      <Form>
+        <Field type="text" name="email" placeholder="email"></Field>
+        <Field type="password" name="password" placeholder="password"></Field>
         <button type="submit">Sign Up!</button>
-      </form>
+      </Form>
       or sign in here <button>Login</button>
     </div>
   );
