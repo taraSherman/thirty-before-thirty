@@ -24,7 +24,7 @@ function ItemForm(props) {
     props.addItem(itemObj);
     setItemObj({
       name: '',
-      description: null,
+      description: '',
       deadline: '',
       comments: []
     });
