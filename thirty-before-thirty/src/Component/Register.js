@@ -14,8 +14,18 @@ function Register({ touched, errors, status }) {
   return (
     <div>
       <Form>
-        <Field type="text" name="email" placeholder="email"></Field>
-        <Field type="password" name="password" placeholder="password"></Field>
+        <label>
+          <Field type="text" name="email" placeholder="email"></Field>
+          {touched.name && errors.name && (
+            <p className="error">{errors.name}</p>
+          )}
+        </label>
+        <label>
+          <Field type="password" name="password" placeholder="password"></Field>
+          {touched.password && errors.password && (
+            <p className="error">{errors.password}</p>
+          )}
+        </label>
         <button type="submit">Sign Up!</button>
       </Form>
       or sign in here <button>Login</button>
@@ -23,4 +33,26 @@ function Register({ touched, errors, status }) {
   );
 }
 
-export default Register;
+export default withFormik({
+  mapPropsToValues({ username, password }) {
+    return {
+      username: username || "",
+      password: password || ""
+    };
+  },
+
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required(),
+    password: Yup.string().required()
+  }),
+
+  handleSubmit(values, { setStatus }) {
+    api
+      .post("/auth/register", values)
+      .then(res => {
+        console.log(res);
+        setStatus(res.data);
+      })
+      .catch(err => console.log(err.response));
+  }
+})(Register);
