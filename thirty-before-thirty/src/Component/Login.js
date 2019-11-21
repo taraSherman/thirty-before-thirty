@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { Formik, Form, Field } from "formik";
+import * as yup from "yup";
+import axios from "axios";
 
 const FormDiv = styled.div`
   display: flex;
@@ -16,8 +18,9 @@ const Buttons = styled.div`
   justify-content: space-evenly;
 `;
 
-const Button = styled.button`
-width: 75px;
+export const Button = styled.button`
+  width: 75px;
+  height: 25px;
 `;
 
 function Login() {
@@ -46,4 +49,28 @@ function Login() {
   );
 }
 
-export default Login;
+export default withFormik({
+  mapPropsToValues: currentValues => {
+    return {
+      username: currentValues.username || "",
+      password: currentValues.password || ""
+    };
+  },
+  validationSchema: yup.object().shape({
+    username: yup.string().required(),
+    password: yup.string().required()
+  }),
+  handleSubmit: values => {
+    console.log(values);
+    axios
+      .post("https://buildweek30before30.herokuapp.com/api", values)
+      //if response is valid then log this..
+      .then(response => {
+        console.log(response);
+      })
+      //if response is invalid then log this..
+      .catch(err => {
+        console.log(err);
+      });
+  }
+})(Login);
