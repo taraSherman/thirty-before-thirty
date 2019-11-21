@@ -17,7 +17,6 @@ const MainDiv = styled.div`
   background-color: #f7f9fb;
 `;
 
-
 function App() {
   return (
     <WrapperDiv>
@@ -26,6 +25,7 @@ function App() {
         {/* Routes Here */}
         <Register />
       </MainDiv>
+      <footer>Footer Here 2019</footer>
     </WrapperDiv>
   );
 }
