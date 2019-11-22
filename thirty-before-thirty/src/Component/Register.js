@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+// import { BrowserRouter, Route, Link } from 'react-router-dom';
 import * as Yup from "yup";
 import api from "../withAuth";
-import Login from './Login';
+// import Login from './Login';
 // import styled from "styled-components";
 
-
-
-
-function Register( props) {
-    console.log('Register props',props)
+function Register(props) {
   const [user, setUser] = useState([]);
   useEffect(() => {
     if (props.status) {
@@ -21,12 +17,15 @@ function Register( props) {
   return (
     <div>
       <Form>
-          {props.touched.email && props.errors.email && <p className="errors">{props.errors.email}</p>}
-          <Field type="text" name="email" placeholder="Email" />
+        {props.touched.email && props.errors.email && (
+          <p className="errors">{props.errors.email}</p>
+        )}
+        <Field type="text" name="email" placeholder="Email" />
         <label>
-          {props.touched.password && props.errors.password && <p className="errors">{props.errors.password}</p>}
+          {props.touched.password && props.errors.password && (
+            <p className="errors">{props.errors.password}</p>
+          )}
           <Field type="password" name="password" placeholder="Password" />
-         
         </label>
         <button type="submit">Sign Up!</button>
       </Form>
@@ -38,29 +37,31 @@ function Register( props) {
     
 
       </BrowserRouter> */}
-      <button onClick={() => backToLogin(props)}> 
-      Back To Login
-      </button>
+      <button onClick={() => backToLogin(props)}>Back To Login</button>
     </div>
   );
 }
 
 export default withFormik({
-  mapPropsToValues:({ email, password }) => {
+  mapPropsToValues: ({ email, password }) => {
     return {
       email: email || " ",
       password: password || " "
-
     };
   },
 
   validationSchema: Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).max(10).required()
+    email: Yup.string()
+      .email()
+      .required(),
+    password: Yup.string()
+      .min(6)
+      .max(10)
+      .required()
   }),
 
   handleSubmit: (values, { setStatus }) => {
-      console.log( values);
+    console.log(values);
 
     api
       .post("/auth/register", values)
@@ -72,9 +73,7 @@ export default withFormik({
   }
 })(Register);
 
-
 function backToLogin(props) {
-    console.log('backtologin' ,props);
-    props.history.push('/');
- }
-
+  console.log("backtologin", props);
+  props.history.push("/");
+}
