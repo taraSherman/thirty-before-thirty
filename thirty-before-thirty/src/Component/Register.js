@@ -1,52 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import * as Yup from "yup";
 import api from "../withAuth";
+import Login from './Login';
+// import styled from "styled-components";
 
-function Register({ touched, errors, status }) {
+
+
+
+function Register( props) {
+    console.log('Register props',props)
   const [user, setUser] = useState([]);
   useEffect(() => {
-    if (status) {
-      console.log("status :", status);
-      setUser([...user, status]);
+    if (props.status) {
+      console.log("status :", props.status);
+      setUser([...user, props.status]);
     }
-  }, [status]);
+  }, [props.status]);
   return (
     <div>
       <Form>
+          {props.touched.email && props.errors.email && <p className="errors">{props.errors.email}</p>}
+          <Field type="text" name="email" placeholder="Email" />
         <label>
-          <Field type="text" name="email" placeholder="email"></Field>
-          {touched.name && errors.name && (
-            <p className="error">{errors.name}</p>
-          )}
-        </label>
-        <label>
-          <Field type="password" name="password" placeholder="password"></Field>
-          {touched.password && errors.password && (
-            <p className="error">{errors.password}</p>
-          )}
+          {props.touched.password && props.errors.password && <p className="errors">{props.errors.password}</p>}
+          <Field type="password" name="password" placeholder="Password" />
+         
         </label>
         <button type="submit">Sign Up!</button>
       </Form>
-      or sign in here <button>Login</button>
+
+      {/* <BrowserRouter>
+        <Link to ='/' >Return to Login</Link>
+        <Route to exact path='/' render = { () => <Login/>}/>
+          
+    
+
+      </BrowserRouter> */}
+      <button onClick={() => backToLogin(props)}> 
+      Back To Login
+      </button>
     </div>
   );
 }
 
 export default withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues:({ email, password }) => {
     return {
-      username: username || "",
-      password: password || ""
+      email: email || " ",
+      password: password || " "
+
     };
   },
 
   validationSchema: Yup.object().shape({
-    username: Yup.string().required(),
-    password: Yup.string().required()
+    email: Yup.string().email().required(),
+    password: Yup.string().min(6).max(10).required()
   }),
 
-  handleSubmit(values, { setStatus }) {
+  handleSubmit: (values, { setStatus }) => {
+      console.log( values);
+
     api
       .post("/auth/register", values)
       .then(res => {
@@ -56,3 +71,10 @@ export default withFormik({
       .catch(err => console.log(err.response));
   }
 })(Register);
+
+
+function backToLogin(props) {
+    console.log('backtologin' ,props);
+    props.history.push('/');
+ }
+
