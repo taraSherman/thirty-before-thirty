@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "./Component/Login";
-import Header from "./Component/Header"
+import Login from './Component/Login'
+import Header from './Component/Header'
 import styled from "styled-components";
 
 const WrapperDiv = styled.div`
