@@ -50,6 +50,7 @@ export default withFormik({
     return {
       email: email || " ",
       password: password || " "
+
     };
   },
 
@@ -60,6 +61,7 @@ export default withFormik({
 
   handleSubmit: (values, { setStatus }) => {
       console.log( values);
+
     api
       .post("/auth/register", values)
       .then(res => {
@@ -70,7 +72,9 @@ export default withFormik({
   }
 })(Register);
 
+
 function backToLogin(props) {
     console.log('backtologin' ,props);
     props.history.push('/');
  }
+

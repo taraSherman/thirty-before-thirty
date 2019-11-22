@@ -6,6 +6,7 @@ import * as yup from "yup";
 import axios from "axios";
 import Register from './Register';
 
+
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
