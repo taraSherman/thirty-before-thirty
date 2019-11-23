@@ -6,6 +6,7 @@ import { withFormik , Form, Field } from "formik";
 // import axios from "axios";
 import Register from './Register';
 
+
 const FormDiv = styled.div`
   display: flex;
   flex-direction: column;

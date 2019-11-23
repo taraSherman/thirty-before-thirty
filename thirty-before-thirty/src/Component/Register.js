@@ -1,52 +1,48 @@
 import React , { useState, useEffect} from "react";
 import { withFormik, Form, Field } from "formik";
-import { Route, Link } from 'react-router-dom';
-import Login from "./Login";
+import { Route, Link } from "react-router-dom";
 import * as Yup from "yup";
 import api from "../withAuth";
-
+import Login from "./Login";
 // import styled from "styled-components";
 
-
-
-
-function Register( props) {
-    console.log('Register props',props)
-
-
+const Register = ({ touched, errors, status }) => {
   const [user, setUser] = useState([]);
-
+  // const callback = useCallback
   useEffect(() => {
-    if (props.status) {
-      setUser([...user, props.status]);
+    if (status) {
+      return setUser([...user, status]);
     }
-  }, [ props.status, user]);
-
-
+  }, [status]);
   return (
     <div>
       <Form>
         <label>
-          {props.touched.email && props.errors.email && <p className="errors">{props.errors.email}</p>}
+          {touched.email && errors.email && (
+            <p className="errors">{errors.email}</p>
+          )}
           <Field type="text" name="email" placeholder="Email" />
         </label>
         <label>
-          {props.touched.password && props.errors.password && <p className="errors">{props.errors.password}</p>}
+          {touched.password && errors.password && (
+            <p className="errors">{errors.password}</p>
+          )}
           <Field type="password" name="password" placeholder="Password" />
-         
         </label>
         <button type="submit">Sign Up!</button>
       </Form>
 
-      <Link to="/">Return to Login</Link>
-      <Route to exact path="/" render={()=> <Login />} />
-      <h1>{user}</h1>
+      
+        <Link to="/">Return to Login</Link>
+        <Route to exact path="/" render={() => <Login />} />
+      
+      <button>Ready to login?</button>
     </div>
   );
 };
 
 export default withFormik({
-  mapPropsToValues:({ email, password }) => {
+  mapPropsToValues: ({ email, password }) => {
     return {
       email: email || " ",
       password: password || " "
@@ -64,7 +60,8 @@ export default withFormik({
   }),
 
   handleSubmit: (values, { setStatus }) => {
-      console.log( values);
+    console.log(values);
+
     api
       .post("/auth/register", values)
       .then(res => {
@@ -74,8 +71,3 @@ export default withFormik({
       .catch(err => console.log(err.response));
   }
 })(Register);
-
-// function backToLogin(props) {
-//     console.log('backtologin' ,props);
-//     props.history.push('/');
-//  }
