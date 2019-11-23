@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { withFormik ,Formik, Form, Field } from "formik";
-import * as yup from "yup";
-import axios from "axios";
+import { Route, Link } from 'react-router-dom';
+import { withFormik , Form, Field } from "formik";
+// import * as yup from "yup";
+// import axios from "axios";
 import Register from './Register';
 
 
@@ -38,19 +38,13 @@ export const Button = styled.button`
 
 function Login() {
   return (
-    <Formik
-      initialValues={{ username: "", password: "" }}
-      onSubmit={(...LoginUsers) => {
-        console.log(LoginUsers, 'KAdeem');
-      }}
-      render={props => {
-        return (
-        <BrowserRouter >
+       
           <Form>
             Please Login or Register
             <FormDiv>
               <Field type="text" name="username" placeholder="Username" />
               <Field type="password" name="password" placeholder="Password" />
+              
               <Buttons>
                 <Button type="submit" name='login'> Login</Button>
                   
@@ -61,35 +55,32 @@ function Login() {
               </Buttons>
             </FormDiv>
           </Form>
-          </BrowserRouter>
-        );
-      }}
-    />
-  );
-}
-
+          )
+        }
 export default withFormik({
-  mapPropsToValues: currentValues => {
+  //values come from formik automatically...
+
+  mapPropsToValues: (currentValues) => {
     return {
       username: currentValues.username || " ",
       password: currentValues.password || " "
     };
   },
-  validationSchema: yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().min(6).required()
-  }),
+  // validationSchema: yup.object().shape({
+  //   username: yup.string().required(),
+  //   password: yup.string().required()
+  // }),
   handleSubmit: values => {
     console.log(values, 'ksdnksdn');
-    axios
-      .post("https://buildweek30before30.herokuapp.com/api", values)
-      //if response is valid then log this..
-      .then(response => {
-        console.log(response);
-      })
-      //if response is invalid then log this..
-      .catch(err => {
-        console.log(err);
-      });
+    // axios
+    //   .post("https://buildweek30before30.herokuapp.com/api", values)
+    //   //if response is valid then log this..
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   //if response is invalid then log this..
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 })(Login);

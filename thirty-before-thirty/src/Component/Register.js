@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React , { useState, useEffect} from "react";
 import { withFormik, Form, Field } from "formik";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import * as Yup from "yup";
 import api from "../withAuth";
 import Login from "./Login";
@@ -13,7 +13,7 @@ const Register = ({ touched, errors, status }) => {
     if (status) {
       return setUser([...user, status]);
     }
-  }, [status]);
+  }, [status , user]);
   return (
     <div>
       <Form>
@@ -32,10 +32,10 @@ const Register = ({ touched, errors, status }) => {
         <button type="submit">Sign Up!</button>
       </Form>
 
-      <BrowserRouter>
+      
         <Link to="/">Return to Login</Link>
         <Route to exact path="/" render={() => <Login />} />
-      </BrowserRouter>
+      
       <button>Ready to login?</button>
     </div>
   );
@@ -51,12 +51,12 @@ export default withFormik({
 
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .email()
-      .required(),
+    .email()
+    .required(),
     password: Yup.string()
-      .min(6)
-      .max(12)
-      .required()
+    .min(6)
+    .max(10)
+    .required()
   }),
 
   handleSubmit: (values, { setStatus }) => {

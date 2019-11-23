@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Login from './Component/Login'
 import Header from './Component/Header'
 import styled from "styled-components";
@@ -29,12 +29,10 @@ function App(props) {
       <Header></Header>
 
       <MainDiv>
-
-        <BrowserRouter>
             <Link to ='/register' >Register Now</Link>
             <Route exact path='/register' render = { (props) => <Register {...props} />}/>
             <Route exact path='/' render= {() => <Login />}/>
-        </BrowserRouter>
+        
 
       </MainDiv>
       <footer>Footer Here 2019</footer>
