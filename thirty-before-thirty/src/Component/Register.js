@@ -13,7 +13,7 @@ const Register = ({ touched, errors, status }) => {
     if (status) {
       return setUser([...user, status]);
     }
-  }, [status]);
+  }, [status , user]);
   return (
     <div>
       <Form>
